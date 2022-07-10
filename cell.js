@@ -6,7 +6,7 @@ class Cell {
     } else {
       this.options = [];
       for (let i = 0; i < value; i++) {
-        this.options[i] = i
+        this.options[i] = i;
       }
     }
   }

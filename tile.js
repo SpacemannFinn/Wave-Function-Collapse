@@ -24,17 +24,17 @@ class Tile {
       
       //right
       if(tile.edges[3] == this.edges[1]){
-        this.up.push(i);
+        this.right.push(i);
       }
       
       //down
       if(tile.edges[0] == this.edges[2]){
-        this.up.push(i);
+        this.down.push(i);
       }
       
       //left
       if(tile.edges[1] == this.edges[3]){
-        this.up.push(i);
+        this.left.push(i);
       }
       
     }

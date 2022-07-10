@@ -45,7 +45,7 @@ function setup() {
 }
 
 function checkValid(arr, valid) {
-  for (let i = 0; i < arr.length; i++) {
+  for (let i = arr.length - 1; i >= 0; i--) {
     let element = arr[i];
     if (!valid.includes(element)) {
       arr.splice(i, 1);
@@ -104,8 +104,8 @@ function draw() {
   const nextGrid = [];
   console.log(grid);
 
-  for (let i = 0; i < DIM; i++) {
-    for (let j = 0; j < DIM; j++) {
+  for (let j = 0; j < DIM; j++) {
+    for (let i = 0; i < DIM; i++) {
       let index = i + j * DIM;
       if (grid[index].collapsed) {
         nextGrid[index] = grid[index];
