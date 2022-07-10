@@ -13,22 +13,43 @@ const LEFT = 4;
 
 
 function preload() {
-  const path = "tiles";
-  tileImages[0] = loadImage(`${path}/blank.png`)
-  tileImages[1] = loadImage(`${path}/up.png`)
+  const path = "tiles/circuit/";
+  tileImages[0] = loadImage(`${path}/0.png`)
+  tileImages[1] = loadImage(`${path}/1.png`)
+  tileImages[2] = loadImage(`${path}/2.png`)
+  tileImages[3] = loadImage(`${path}/3.png`)
+  tileImages[4] = loadImage(`${path}/6.png`)
+  tileImages[5] = loadImage(`${path}/7.png`)
+  tileImages[6] = loadImage(`${path}/8.png`)
+  tileImages[7] = loadImage(`${path}/9.png`)
+  tileImages[8] = loadImage(`${path}/10.png`)
+  tileImages[9] = loadImage(`${path}/11.png`)
+  tileImages[10] = loadImage(`${path}12.png`)
 
 }
 
 function setup() {
   createCanvas(800, 800);
+  randomSeed(1);
 
   //loaded and created tiles
   tiles[0] = new Tile(tileImages[0], [0, 0, 0, 0]);
-  tiles[1] = new Tile(tileImages[1], [1, 1, 0, 1]);
-  tiles[2] = tiles[1].rotate(1);
-  tiles[3] = tiles[1].rotate(2);
-  tiles[4] = tiles[1].rotate(3);
+  tiles[1] = new Tile(tileImages[1], [1, 1, 1, 1]);
+  tiles[2] = new Tile(tileImages[2], [1, 2, 1, 1]);
+  tiles[3] = new Tile(tileImages[3], [1, 3, 1, 3]);
+  tiles[4] = new Tile(tileImages[4], [1, 2, 1, 2]);
+  tiles[5] = new Tile(tileImages[5], [3, 2, 3, 2]);
+  tiles[6] = new Tile(tileImages[6], [3, 1, 2, 1]);
+  tiles[7] = new Tile(tileImages[7], [2, 2, 1, 2]);
+  tiles[8] = new Tile(tileImages[8], [2, 2, 2, 2]);
+  tiles[9] = new Tile(tileImages[9], [2, 2, 1, 1]);
+  tiles[10] = new Tile(tileImages[10], [1, 2, 1, 2]);
 
+  for(let i = 2; i<11; i++){
+    for(let j = 1; j < 4; j++){
+      tiles.push(tiles[i].rotate(j));
+    }
+  }
   //generated rules for tile placement
   for (let i = 0; i < tiles.length; i++) {
     const tile = tiles[i];
@@ -91,9 +112,6 @@ function draw() {
 
   gridCopy = gridCopy.filter((a) => a.options.length <= gridCopy[0].options.length)
 
-
-  console.log(grid);
-
   const cell = random(gridCopy);
   cell.collapsed = true;
   const pick = random(cell.options);
@@ -102,7 +120,6 @@ function draw() {
   //NextGen Tiles like star trek but funnier
 
   const nextGrid = [];
-  console.log(grid);
 
   for (let j = 0; j < DIM; j++) {
     for (let i = 0; i < DIM; i++) {
@@ -129,7 +146,6 @@ function draw() {
           let right = grid[i + 1 + j * DIM];
           let validOptions = [];
           for (let option of right.options) {
-            console.log("right options", tiles[option])
             let valid = tiles[option].left;
             validOptions = validOptions.concat(valid);
           }

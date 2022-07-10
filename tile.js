@@ -44,6 +44,7 @@ class Tile {
     const w = this.img.width;
     const h = this.img.height;
     const newImg = createGraphics(w, h);
+    
     newImg.imageMode(CENTER);
     newImg.translate(w / 2, h / 2);
     newImg.rotate(num * HALF_PI);
