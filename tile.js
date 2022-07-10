@@ -1,3 +1,13 @@
+function reverseString(s) {
+  let arr = s.split("");
+  arr = arr.reverse();
+  return arr.join("");
+}
+
+function compareEdge(a, b) {
+  return a == reverseString(b)
+}
+
 class Tile {
   constructor(img, edges) {
     this.img = img;
@@ -18,25 +28,25 @@ class Tile {
     for (let i = 0; i < tiles.length; i++) {
       let tile = tiles[i];
       //up
-      if(tile.edges[2] == this.edges[0]){
+      if (compareEdge(tile.edges[2], this.edges[0])) {
         this.up.push(i);
       }
-      
+
       //right
-      if(tile.edges[3] == this.edges[1]){
+      if (compareEdge(tile.edges[3], this.edges[1])) {
         this.right.push(i);
       }
-      
+
       //down
-      if(tile.edges[0] == this.edges[2]){
+      if (compareEdge(tile.edges[0], this.edges[2])) {
         this.down.push(i);
       }
-      
+
       //left
-      if(tile.edges[1] == this.edges[3]){
+      if (compareEdge(tile.edges[1], this.edges[3])) {
         this.left.push(i);
       }
-      
+
     }
   }
 
@@ -44,7 +54,7 @@ class Tile {
     const w = this.img.width;
     const h = this.img.height;
     const newImg = createGraphics(w, h);
-    
+
     newImg.imageMode(CENTER);
     newImg.translate(w / 2, h / 2);
     newImg.rotate(num * HALF_PI);
@@ -58,5 +68,5 @@ class Tile {
 
     return new Tile(newImg, newEdges, this.index);
   }
-  
+
 }
